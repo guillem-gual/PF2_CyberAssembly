@@ -8,15 +8,14 @@ public class SupervisorCentral {
 
     // Protocol de Parada d'Emergència (Monitors Synchronized + wait()/notifyAll())
 
-    public static synchronized void paradaEmergencia(RobotTask rt) throws InterruptedException {
+    public static synchronized void paradaEmergencia(int id) throws InterruptedException {
         Random ran = new Random();
         int numAleatori = 10;
         while (numAleatori != 0) {
-            rt.wait();
-            Thread.sleep(1000);
+            wait();
             numAleatori = ran.nextInt(5);
         }
-        rt.notifyAll();
+        notifyAll();
     }
 
 }

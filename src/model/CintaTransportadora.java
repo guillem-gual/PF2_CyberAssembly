@@ -5,6 +5,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class CintaTransportadora {
 
+    int capacitatMaxima = 10;
+
     // ReentrantLock 
     ReentrantLock lock = new ReentrantLock();
 
@@ -12,7 +14,7 @@ public class CintaTransportadora {
     Condition cintaNoPlena = lock.newCondition();
     Condition cintaNoBuida = lock.newCondition();
 
-    public void passaCinta() throws InterruptedException {
+    public void afegirBateria(int id, int comptador) throws InterruptedException {
         lock.lock();
         try {
             // Si esta plena, esperam la condició cintaNoPlena
