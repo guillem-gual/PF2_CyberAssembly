@@ -1,5 +1,6 @@
 package tasks;
 
-public class AGVTask {
+public class AGVTask extends Thread{
 
+    
 }

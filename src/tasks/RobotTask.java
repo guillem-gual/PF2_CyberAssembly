@@ -1,5 +1,5 @@
 package tasks;
 
-public class RobotTask {
+public class RobotTask extends Thread{
 
 }
