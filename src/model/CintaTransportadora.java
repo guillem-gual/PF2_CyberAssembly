@@ -1,7 +1,27 @@
 package model;
 
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class CintaTransportadora {
 
-    // ReentrantLock i Condition (cintaNoPlena i cintaNoBuida)
+    // ReentrantLock 
+    ReentrantLock lock = new ReentrantLock();
+
+    // Condition (cintaNoPlena i cintaNoBuida)
+    Condition cintaNoPlena = lock.newCondition();
+    Condition cintaNoBuida = lock.newCondition();
+
+    public void passaCinta() throws InterruptedException {
+        lock.lock();
+        try {
+            // Si esta plena, esperam la condició cintaNoPlena
+            cintaNoPlena.await();
+            // Accés a la secció crítica
+            cintaNoBuida.signal();
+        } finally {
+            lock.unlock();
+        }
+    }
 
 }
